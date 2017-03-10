@@ -71,7 +71,7 @@ namespace Parking.Controllers
 
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
-                while (reader.Read())
+                /*while (reader.Read())
                 {
                     p_slot.location = new Coord(reader.GetInt32(1), reader.GetInt32(2));
                     p_slot.lastTimeReserved = reader.GetDateTime(3);
@@ -89,8 +89,8 @@ namespace Parking.Controllers
                     {
                         p_slot.state = SlotState.Reserved;
                     }
-                    
-                }
+
+                }*/
             }
         }
 

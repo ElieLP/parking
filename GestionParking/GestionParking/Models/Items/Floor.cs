@@ -18,7 +18,7 @@ namespace Parking
             this.m_ID = p_iD;
             this.m_slotList = p_sl;
         }
-        }
+        
 
         public int ID
         {
