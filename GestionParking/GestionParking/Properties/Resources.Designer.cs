@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GestionParking.Properties
+namespace Parking.Properties
 {
 
 
