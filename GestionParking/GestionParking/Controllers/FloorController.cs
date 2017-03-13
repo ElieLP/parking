@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Parking.Interfaces;
 using Parking.Views;
-using static Parking.Views.Views;
 
 namespace Parking.Controllers
 {
-    class FloorController : IFloorController
+    public class FloorController : IFloorController
     {
         IView view;
         Floor model;
@@ -18,6 +17,7 @@ namespace Parking.Controllers
             view = v;
             model = m;
             view.setController(this);
+            //model.
         }
 
         public void generateFloor1()
@@ -49,6 +49,6 @@ namespace Parking.Controllers
         {
             return model.statsReservee();
         }
-
+        
     }
 }

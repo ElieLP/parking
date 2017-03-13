@@ -7,6 +7,16 @@ using Parking;
 
 namespace Parking
 {
+    public delegate void ModelHandler<Floor>(Floor sender, FloorEventArgs e);
+
+    public class FloorEventArgs : EventArgs
+    {
+        public FloorEventArgs()
+        {
+
+        }
+    }
+
     public class Floor
     {
         private int m_ID;
@@ -144,6 +154,7 @@ namespace Parking
             }
             return resultat;
         }
+       
 
     }
 }

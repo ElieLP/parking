@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Parking.Interfaces
 {
-    interface ISlotController
+    public interface ISlotController
     {
-
+        void NewState(SlotState p_s);
     }
 }

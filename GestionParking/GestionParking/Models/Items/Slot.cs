@@ -14,7 +14,6 @@ namespace Parking
         private DateTime m_lastTimeReserved;
         private DateTime m_lastTimeTaken;
         private SlotState m_state;
-        //private PictureBox m_pict;
 
         public Slot(int p_id, int p_CoordX, int p_CoordY, DateTime p_lastTimeReserved, DateTime p_lastTimeTaken, String p_state)
         {
@@ -54,15 +53,6 @@ namespace Parking
             {
                 this.m_state = SlotState.Reserved;
             }
-
-            /*PictureBox tempPict = new PictureBox();
-            tempPict.BackColor = Color.Green;
-            tempPict.Location = new Point(this.m_location.x, this.m_location.y);
-            tempPict.Tag = p_id;
-            
-            //tempPict.Click += GestionParking.Parking.Picture_Click; //Ajout de l'evenement au clic
-            this.m_pict = tempPict;*/
-
         }
         
 
@@ -73,13 +63,6 @@ namespace Parking
             this.m_lastTimeReserved = new DateTime(0);
             this.m_lastTimeTaken = new DateTime(0);
             this.m_state = SlotState.Empty;
-
-            /*PictureBox tempPict = new PictureBox();
-            tempPict.BackColor = Color.Green;
-            tempPict.Location = new Point(this.m_location.x, this.m_location.y);
-            tempPict.Tag = p_id;
-            this.m_pict = tempPict;
-            this.pict.Click += GestionParking.Parking.Picture_Click; //Ajout de l'evenement au clic*/
         }
 
         public int ID
@@ -145,19 +128,6 @@ namespace Parking
                 m_location = value;
             }
         }
-
-        /*public PictureBox pict
-        {
-            get
-            {
-                return m_pict;
-            }
-
-            set
-            {
-                m_pict = value;
-            }
-        }*/
 
         public void NewState(SlotState p_s)
         {

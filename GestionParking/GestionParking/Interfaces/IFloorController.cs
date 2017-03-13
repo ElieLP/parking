@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Parking.Interfaces
 {
-    interface IFloorController
+    public interface IFloorController
     {
         void generateFloor1();
         void generateFloor2();

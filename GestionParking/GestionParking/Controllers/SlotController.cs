@@ -4,12 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Parking.Interfaces;
+using Parking.Views;
 
 namespace Parking.Controllers
 {
     class SlotController : ISlotController
     {
-        //IView view;//Edit
-        //IModel model;//Edit
+        IView view;
+        Slot model;
+
+        public void NewState(SlotState p_s)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Parking;
+using Parking.Controllers;
+using Parking.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,11 +10,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Parking.Interfaces;
 
 namespace Parking
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form, IView
     {
+        //Constante pour les PictureBox
+        public const int Width = 75;
+        public const int Height = 50;
+
+        //Création des Controllers
+        IFloorController floorController;
+        ISlotController slotController;
+        public event ViewHandler<IView> changed;
+
         //Création des Etages
         Floor floor1;
         Floor floor2;
@@ -27,26 +39,42 @@ namespace Parking
         List<Slot> listFloor4;
         List<Slot> listFloor5;
 
-        //Création des GroupBox
-        GroupBox grpDetailPlace;
-        GroupBox grpDetailEtage;
+        //Création de la liste des PictureBox par étage
+        List<PictureBox> listPictFloor1;
+        List<PictureBox> listPictFloor2;
+        List<PictureBox> listPictFloor3;
+        List<PictureBox> listPictFloor4;
+        List<PictureBox> listPictFloor5;
 
         //Selection de PictureBox
         PictureBox actualPict;
         int actualFloor;
 
+        public void setController(FloorController cont)
+        {
+            floorController = cont;
+        }
+
         public Form1()
         {
             InitializeComponent();
             grp_parking.Controls.Clear();
+            actualFloor = 1;
             
 
             //Instancation des Etages
-            List<Slot> listFloor1 = new List<Slot>();
-            List<Slot> listFloor2 = new List<Slot>();
-            List<Slot> listFloor3 = new List<Slot>();
-            List<Slot> listFloor4 = new List<Slot>();
-            List<Slot> listFloor5 = new List<Slot>();
+            listFloor1 = new List<Slot>();
+            listFloor2 = new List<Slot>();
+            listFloor3 = new List<Slot>();
+            listFloor4 = new List<Slot>();
+            listFloor5 = new List<Slot>();
+
+            //Instanciation des List de PictureBox
+            listPictFloor1 = new List<PictureBox>();
+            listPictFloor2 = new List<PictureBox>();
+            listPictFloor3 = new List<PictureBox>();
+            listPictFloor4 = new List<PictureBox>();
+            listPictFloor5 = new List<PictureBox>();
 
             //Instancation des listes pas Etages
             floor1 = new Floor(1, listFloor1);
@@ -58,13 +86,19 @@ namespace Parking
             //Affectation des places des Etages
             floor1.generateFloor1();
             floor2.generateFloor2();
-            floor3.generateFloor3();
-            //floor4.generateFloor4();
-            //floor5.generateFloor5();
-            
+            floor3.generateFloor2();
+            floor4.generateFloor3();
+            floor5.generateFloor3();
+
+            //Affecation des pictureBox
+            generatePictFloor(listPictFloor1, listFloor1);
+            generatePictFloor(listPictFloor2, listFloor2);
+            generatePictFloor(listPictFloor3, listFloor3);
+            generatePictFloor(listPictFloor4, listFloor4);
+            generatePictFloor(listPictFloor5, listFloor5);
 
             //Affichage du premier Etage
-            floor1.affichage(grp_parking);
+            displayFloor(listPictFloor1);
             grp_detail_etage.Show();
             grp_detail_place.Hide();
 
@@ -96,6 +130,9 @@ namespace Parking
             Slot slot = listFloor1[Convert.ToInt32(pict.Tag)];
 
             grp_detail_place.Text = "Détails : Place " + pict.Tag;
+            grp_detail_etage.Hide();
+            grp_detail_place.Show();
+            
 
             if (slot.state == SlotState.Empty)
             {//A changer
@@ -142,7 +179,7 @@ namespace Parking
         {
             //Change l'affichage de l'étage en cours par celui de l'étage 1
             grp_parking.Controls.Clear();
-            floor1.affichage(grp_parking);
+            displayFloor(listPictFloor1);
             grp_detail_place.Hide();
             grp_detail_etage.Show();
             grp_detail_etage.Text = "Détails : Etage 1";
@@ -164,7 +201,7 @@ namespace Parking
         {
             //Change l'affichage de l'étage en cours par celui de l'étage 2
             grp_parking.Controls.Clear();
-            floor2.affichage(grp_parking);
+            displayFloor(listPictFloor2);
             grp_detail_place.Hide();
             grp_detail_etage.Show();
             grp_detail_etage.Text = "Détails : Etage 2";
@@ -185,7 +222,7 @@ namespace Parking
         {
             //Change l'affichage de l'étage en cours par celui de l'étage 3
             grp_parking.Controls.Clear();
-            floor3.affichage(grp_parking);
+            displayFloor(listPictFloor3);
             grp_detail_place.Hide();
             grp_detail_etage.Show();
             grp_detail_etage.Text = "Détails : Etage 3";
@@ -206,7 +243,7 @@ namespace Parking
         {
             //Change l'affichage de l'étage en cours par celui de l'étage 4
             grp_parking.Controls.Clear();
-            floor4.affichage(grp_parking);
+            displayFloor(listPictFloor4);
             grp_detail_place.Hide();
             grp_detail_etage.Show();
             grp_detail_etage.Text = "Détails : Etage 4";
@@ -227,7 +264,7 @@ namespace Parking
         {
             //Change l'affichage de l'étage en cours par celui de l'étage 5
             grp_parking.Controls.Clear();
-            floor5.affichage(grp_parking);
+            displayFloor(listPictFloor5);
             grp_detail_place.Hide();
             grp_detail_etage.Show();
             grp_detail_etage.Text = "Détails : Etage 5";
@@ -257,25 +294,60 @@ namespace Parking
         private void rdb_place_disponible_CheckedChanged(object sender, EventArgs e)
         {
 
-            /*if (actualFloor == 1)
+            if (actualFloor == 1)
             {
-                floor1.slotList[].pict = SlotState.Empty;
+                //floor1.slotList[].pict = SlotState.Empty;
             }else if (actualFloor == 2)
             {
-                floor2.slotList[actualPict.Tag].pict = SlotState.Empty;
+                //floor2.slotList[actualPict.Tag].pict = SlotState.Empty;
             }
             else if (actualFloor == 3)
             {
-                floor3.slotList[actualPict.Tag].pict = SlotState.Empty;
+                //floor3.slotList[actualPict.Tag].pict = SlotState.Empty;
             }
             else if(actualFloor == 4)
             {
-                floor4.slotList[actualPict.Tag].pict = SlotState.Empty;
+                //floor4.slotList[actualPict.Tag].pict = SlotState.Empty;
             }
             else
             {
-                floor5.slotList[actualPict.Tag].pict = SlotState.Empty;
-            }*/
+               //floor5.slotList[actualPict.Tag].pict = SlotState.Empty;
+            }
+        }
+
+        public void setController(IFloorController floorCont)
+        {
+            floorController = floorCont;
+        }
+
+        public void setController(ISlotController slotCont)
+        {
+            slotController = slotCont;
+        }
+
+
+        //Modif
+        public void generatePictFloor(List<PictureBox> listPict, List<Slot> listFloor)
+        {
+            for (int i=0; i<listFloor.Count; i++)
+            {
+                PictureBox tempPict = new PictureBox();
+                tempPict.Location = new Point(listFloor[i].location.x, listFloor[i].location.y);
+                tempPict.Height = Height;
+                tempPict.Width = Width;
+                tempPict.BackColor = Color.Green;
+                tempPict.Click += new EventHandler(Picture_Click);
+                tempPict.Tag = i;
+                listPict.Add(tempPict);
+            }
+        }
+
+        public void displayFloor(List<PictureBox> listPict)
+        {
+            for(int i=0; i<listPict.Count; i++)
+            {
+                grp_parking.Controls.Add(listPict[i]);
+            }
         }
     }
 }
