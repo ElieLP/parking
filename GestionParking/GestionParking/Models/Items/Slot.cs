@@ -135,18 +135,18 @@ namespace Parking
             {
                 case SlotState.Empty:
                     if (this.m_state == SlotState.Empty)
-                        throw new Exception("Allready empty") ;
+                        //throw new Exception("Allready empty") ;
                         ;
                     break;
                 case SlotState.Reserved:
                     if (this.m_state == SlotState.Reserved)
-                        throw new Exception("Allready Reserved");
+                        //throw new Exception("Allready Reserved");
                     ;
                     m_lastTimeTaken = DateTime.Now;
                     break;
                 case SlotState.Used:
                     if (this.m_state == SlotState.Used)
-                        throw new Exception("Allready Used");
+                        //throw new Exception("Allready Used");
                     ;
                     m_lastTimeTaken = DateTime.Now;
                     break;

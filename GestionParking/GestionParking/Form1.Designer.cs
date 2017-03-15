@@ -766,32 +766,34 @@
             // rdb_place_reservee
             // 
             this.rdb_place_reservee.AutoSize = true;
-            this.rdb_place_reservee.Checked = true;
-            this.rdb_place_reservee.Location = new System.Drawing.Point(191, 49);
+            this.rdb_place_reservee.Location = new System.Drawing.Point(97, 49);
             this.rdb_place_reservee.Name = "rdb_place_reservee";
             this.rdb_place_reservee.Size = new System.Drawing.Size(71, 17);
             this.rdb_place_reservee.TabIndex = 2;
-            this.rdb_place_reservee.TabStop = true;
             this.rdb_place_reservee.Text = "Réservée";
             this.rdb_place_reservee.UseVisualStyleBackColor = true;
+            this.rdb_place_reservee.CheckedChanged += new System.EventHandler(this.rdb_place_reservee_CheckedChanged);
             // 
             // rdb_place_occupee
             // 
             this.rdb_place_occupee.AutoSize = true;
-            this.rdb_place_occupee.Location = new System.Drawing.Point(99, 49);
+            this.rdb_place_occupee.Location = new System.Drawing.Point(188, 49);
             this.rdb_place_occupee.Name = "rdb_place_occupee";
             this.rdb_place_occupee.Size = new System.Drawing.Size(69, 17);
             this.rdb_place_occupee.TabIndex = 1;
             this.rdb_place_occupee.Text = "Occupée";
             this.rdb_place_occupee.UseVisualStyleBackColor = true;
+            this.rdb_place_occupee.CheckedChanged += new System.EventHandler(this.rdb_place_occupee_CheckedChanged);
             // 
             // rdb_place_disponible
             // 
             this.rdb_place_disponible.AutoSize = true;
+            this.rdb_place_disponible.Checked = true;
             this.rdb_place_disponible.Location = new System.Drawing.Point(8, 49);
             this.rdb_place_disponible.Name = "rdb_place_disponible";
             this.rdb_place_disponible.Size = new System.Drawing.Size(74, 17);
             this.rdb_place_disponible.TabIndex = 0;
+            this.rdb_place_disponible.TabStop = true;
             this.rdb_place_disponible.Text = "Disponible";
             this.rdb_place_disponible.UseVisualStyleBackColor = true;
             this.rdb_place_disponible.CheckedChanged += new System.EventHandler(this.rdb_place_disponible_CheckedChanged);
@@ -1959,7 +1961,7 @@
             this.btn_floor1.UseVisualStyleBackColor = true;
             this.btn_floor1.Click += new System.EventHandler(this.btn_floor1_Click);
             // 
-            // Parking
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1969,7 +1971,7 @@
             this.Controls.Add(this.grp_etage);
             this.Controls.Add(this.grp_detail_place);
             this.Controls.Add(this.grp_detail_etage);
-            this.Name = "Parking";
+            this.Name = "Form1";
             this.Text = "Gestion de Parking";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.grp_detail_etage.ResumeLayout(false);

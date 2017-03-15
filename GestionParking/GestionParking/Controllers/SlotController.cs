@@ -13,9 +13,17 @@ namespace Parking.Controllers
         IView view;
         Slot model;
 
+        public SlotController(IView v, Slot m)
+        {
+            view = v;
+            model = m;
+            view.setController(this);
+            //model.
+        }
+
         public void NewState(SlotState p_s)
         {
-            throw new NotImplementedException();
+            model.NewState(p_s);
         }
     }
 }
