@@ -10,6 +10,11 @@ namespace Parking
         private int m_carCount;
         private List<Floor> m_floorList;
 
+        public Parking()
+        {
+            this.m_carCount = 0;
+        }
+
         public int CarCount
         {
             get
@@ -17,7 +22,7 @@ namespace Parking
                 return m_carCount;
             }
 
-            set
+            private set
             {
                 m_carCount = value;
             }
@@ -34,6 +39,11 @@ namespace Parking
             {
                 m_floorList = value;
             }
+        }
+
+        public void incvalue()
+        {
+            this.m_carCount += 1;
         }
     }
 }

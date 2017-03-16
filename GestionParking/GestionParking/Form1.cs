@@ -25,6 +25,8 @@ namespace Parking
         ISlotController slotController;        
         public event ViewHandler<IView> changed;
 
+        Parking parking;
+
         //Création des Etages
         Floor floor1;
         Floor floor2;
@@ -59,6 +61,8 @@ namespace Parking
         {
             InitializeComponent();
             grp_parking.Controls.Clear();
+            parking = new Parking();
+
             actualFloor = 1;
 
             //Instancation des Etages
@@ -164,6 +168,7 @@ namespace Parking
             lbl_nb_stats_places_dispo.Text = totalDispo.ToString();
             lbl_nb_stats_places_occupees.Text = totalOccupee.ToString();
             lbl_nb_stats_places_reservees.Text = totalReservee.ToString();
+            lbl_nb_stats_voiture_today.Text = parking.CarCount.ToString();
         }
 
         public void displayFloorStats(Floor p_f)
@@ -346,36 +351,47 @@ namespace Parking
                 return;
             }
 
+            SlotState prevState = new SlotState();
+            Slot slot;
+            PictureBox pict;
+
             if (actualFloor == 1)
             {
-                this.floor1.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Used);
-                this.listPictFloor1[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Red;
-                displayPlaceUsedStats(this.floor1.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor1.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor1[Convert.ToInt32(actualPict.Tag)];
             }
             else if (actualFloor == 2)
             {
-                this.floor2.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Used);
-                this.listPictFloor2[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Red;
-                displayPlaceUsedStats(this.floor2.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor2.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor2[Convert.ToInt32(actualPict.Tag)];
             }
             else if (actualFloor == 3)
             {
-                this.floor3.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Used);
-                this.listPictFloor3[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Red;
-                displayPlaceUsedStats(this.floor3.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor3.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor3[Convert.ToInt32(actualPict.Tag)];
             }
             else if (actualFloor == 4)
             {
-                this.floor4.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Used);
-                this.listPictFloor4[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Red;
-                displayPlaceUsedStats(this.floor4.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor4.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor4[Convert.ToInt32(actualPict.Tag)];
             }
             else
             {
-                this.floor5.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Used);
-                this.listPictFloor5[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Red;
-                displayPlaceUsedStats(this.floor5.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor5.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor5[Convert.ToInt32(actualPict.Tag)];
             }
+
+            prevState = slot.state;
+            slot.NewState(SlotState.Used);
+            slot.incValue();
+            pict.BackColor = Color.Red;
+            displayPlaceUsedStats(slot);
+
+            if (prevState == SlotState.Empty)
+            {
+                this.parking.incvalue();
+            }
+
             displayTotalStats();
         }
 
@@ -389,36 +405,47 @@ namespace Parking
                 return;
             }
 
+            SlotState prevState = new SlotState();
+            Slot slot;
+            PictureBox pict;
+
             if (actualFloor == 1)
             {
-                this.floor1.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Reserved);
-                this.listPictFloor1[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Orange;
-                displayPlaceReserveStats(this.floor1.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor1.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor1[Convert.ToInt32(actualPict.Tag)];
             }
             else if (actualFloor == 2)
             {
-                this.floor2.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Reserved);
-                this.listPictFloor2[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Orange;
-                displayPlaceReserveStats(this.floor2.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor2.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor2[Convert.ToInt32(actualPict.Tag)];
             }
             else if (actualFloor == 3)
             {
-                this.floor3.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Reserved);
-                this.listPictFloor3[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Orange;
-                displayPlaceReserveStats(this.floor3.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor3.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor3[Convert.ToInt32(actualPict.Tag)];
             }
             else if (actualFloor == 4)
             {
-                this.floor4.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Reserved);
-                this.listPictFloor4[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Orange;
-                displayPlaceReserveStats(this.floor4.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor4.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor4[Convert.ToInt32(actualPict.Tag)];
             }
             else
             {
-                this.floor5.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Reserved);
-                this.listPictFloor5[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Orange;
-                displayPlaceReserveStats(this.floor5.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor5.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor5[Convert.ToInt32(actualPict.Tag)];
             }
+
+            prevState = slot.state;
+            slot.NewState(SlotState.Reserved);
+            slot.incValue();
+            pict.BackColor = Color.Orange;
+            displayPlaceReserveStats(slot);
+
+            if(prevState == SlotState.Empty)
+            {
+                this.parking.incvalue();
+            }
+
             displayTotalStats();
         }
 
@@ -431,36 +458,41 @@ namespace Parking
                 return;
             }
 
+            SlotState prevState = new SlotState();
+            Slot slot;
+            PictureBox pict;
+
             if (actualFloor == 1)
             {
-                this.floor1.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Empty);
-                this.listPictFloor1[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Green;
-                displayPlaceDispoStats(this.floor1.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor1.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor1[Convert.ToInt32(actualPict.Tag)];
             }
             else if (actualFloor == 2)
             {
-                this.floor2.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Empty);
-                this.listPictFloor2[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Green;
-                displayPlaceDispoStats(this.floor2.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor2.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor2[Convert.ToInt32(actualPict.Tag)];
             }
             else if (actualFloor == 3)
             {
-                this.floor3.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Empty);
-                this.listPictFloor3[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Green;
-                displayPlaceDispoStats(this.floor3.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor3.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor3[Convert.ToInt32(actualPict.Tag)];
             }
             else if (actualFloor == 4)
             {
-                this.floor4.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Empty);
-                this.listPictFloor4[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Green;
-                displayPlaceDispoStats(this.floor4.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor4.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor4[Convert.ToInt32(actualPict.Tag)];
             }
             else
             {
-                this.floor5.slotList[Convert.ToInt32(actualPict.Tag)].NewState(SlotState.Empty);
-                this.listPictFloor5[Convert.ToInt32(actualPict.Tag)].BackColor = Color.Green;
-                displayPlaceDispoStats(this.floor5.slotList[Convert.ToInt32(actualPict.Tag)]);
+                slot = this.floor5.slotList[Convert.ToInt32(actualPict.Tag)];
+                pict = this.listPictFloor5[Convert.ToInt32(actualPict.Tag)];
             }
+            prevState = slot.state;
+            slot.NewState(SlotState.Empty);
+            slot.incValue();
+            pict.BackColor = Color.Green;
+            displayPlaceDispoStats(slot);
+
             displayTotalStats();
         }
 

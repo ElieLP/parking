@@ -14,11 +14,13 @@ namespace Parking
         private DateTime m_lastTimeReserved;
         private DateTime m_lastTimeTaken;
         private SlotState m_state;
+        private Int32 m_nbCar;
 
         public Slot(int p_id, int p_CoordX, int p_CoordY, DateTime p_lastTimeReserved, DateTime p_lastTimeTaken, String p_state)
         {
             this.m_id = p_id;
             this.m_location = new Coord(p_CoordX, p_CoordY);
+            this.m_nbCar = 0;
 
 
             
@@ -63,6 +65,7 @@ namespace Parking
             this.m_lastTimeReserved = new DateTime(0);
             this.m_lastTimeTaken = new DateTime(0);
             this.m_state = SlotState.Empty;
+            this.m_nbCar = 0;
         }
 
         public int ID
@@ -129,6 +132,8 @@ namespace Parking
             }
         }
 
+        public int NbCar { get => m_nbCar; private set => m_nbCar = value; }
+
         public void NewState(SlotState p_s)
         {
             switch (p_s)
@@ -153,6 +158,11 @@ namespace Parking
             }
 
             this.m_state = p_s;
+        }
+
+        public void incValue()
+        {
+            this.m_nbCar += 1;
         }
     }
 }
