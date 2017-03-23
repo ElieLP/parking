@@ -185,6 +185,13 @@
             this.btn_floor3 = new System.Windows.Forms.Button();
             this.btn_floor2 = new System.Windows.Forms.Button();
             this.btn_floor1 = new System.Windows.Forms.Button();
+            this.grp_detail_sortie = new System.Windows.Forms.GroupBox();
+            this.lbl_sortie_etat = new System.Windows.Forms.Label();
+            this.rdb_sortie_ouverte = new System.Windows.Forms.RadioButton();
+            this.rdb_sortie_fermee = new System.Windows.Forms.RadioButton();
+            this.lbl_stats_sortie_voiture = new System.Windows.Forms.Label();
+            this.lbl_stats_sortie_nb_voiture = new System.Windows.Forms.Label();
+            this.chk_stats_sortie_saturee = new System.Windows.Forms.CheckBox();
             this.grp_detail_etage.SuspendLayout();
             this.grp_stats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox81)).BeginInit();
@@ -290,6 +297,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.grp_etage.SuspendLayout();
+            this.grp_detail_sortie.SuspendLayout();
             this.SuspendLayout();
             // 
             // grp_detail_etage
@@ -1961,6 +1969,83 @@
             this.btn_floor1.UseVisualStyleBackColor = true;
             this.btn_floor1.Click += new System.EventHandler(this.btn_floor1_Click);
             // 
+            // grp_detail_sortie
+            // 
+            this.grp_detail_sortie.Controls.Add(this.chk_stats_sortie_saturee);
+            this.grp_detail_sortie.Controls.Add(this.lbl_stats_sortie_nb_voiture);
+            this.grp_detail_sortie.Controls.Add(this.lbl_stats_sortie_voiture);
+            this.grp_detail_sortie.Controls.Add(this.rdb_sortie_fermee);
+            this.grp_detail_sortie.Controls.Add(this.rdb_sortie_ouverte);
+            this.grp_detail_sortie.Controls.Add(this.lbl_sortie_etat);
+            this.grp_detail_sortie.Location = new System.Drawing.Point(26, 278);
+            this.grp_detail_sortie.Name = "grp_detail_sortie";
+            this.grp_detail_sortie.Size = new System.Drawing.Size(282, 335);
+            this.grp_detail_sortie.TabIndex = 86;
+            this.grp_detail_sortie.TabStop = false;
+            this.grp_detail_sortie.Text = "Details : Sortie 1";
+            // 
+            // lbl_sortie_etat
+            // 
+            this.lbl_sortie_etat.AutoSize = true;
+            this.lbl_sortie_etat.Location = new System.Drawing.Point(9, 30);
+            this.lbl_sortie_etat.Name = "lbl_sortie_etat";
+            this.lbl_sortie_etat.Size = new System.Drawing.Size(32, 13);
+            this.lbl_sortie_etat.TabIndex = 0;
+            this.lbl_sortie_etat.Text = "Etat :";
+            // 
+            // rdb_sortie_ouverte
+            // 
+            this.rdb_sortie_ouverte.AutoSize = true;
+            this.rdb_sortie_ouverte.Location = new System.Drawing.Point(35, 49);
+            this.rdb_sortie_ouverte.Name = "rdb_sortie_ouverte";
+            this.rdb_sortie_ouverte.Size = new System.Drawing.Size(63, 17);
+            this.rdb_sortie_ouverte.TabIndex = 1;
+            this.rdb_sortie_ouverte.TabStop = true;
+            this.rdb_sortie_ouverte.Text = "Ouverte";
+            this.rdb_sortie_ouverte.UseVisualStyleBackColor = true;
+            this.rdb_sortie_ouverte.CheckedChanged += new System.EventHandler(this.rdb_sortie_ouverte_CheckedChanged_1);
+            // 
+            // rdb_sortie_fermee
+            // 
+            this.rdb_sortie_fermee.AutoSize = true;
+            this.rdb_sortie_fermee.Location = new System.Drawing.Point(146, 49);
+            this.rdb_sortie_fermee.Name = "rdb_sortie_fermee";
+            this.rdb_sortie_fermee.Size = new System.Drawing.Size(60, 17);
+            this.rdb_sortie_fermee.TabIndex = 2;
+            this.rdb_sortie_fermee.TabStop = true;
+            this.rdb_sortie_fermee.Text = "Fermee";
+            this.rdb_sortie_fermee.UseVisualStyleBackColor = true;
+            this.rdb_sortie_fermee.CheckedChanged += new System.EventHandler(this.rdb_sortie_fermee_CheckedChanged_1);
+            // 
+            // lbl_stats_sortie_voiture
+            // 
+            this.lbl_stats_sortie_voiture.AutoSize = true;
+            this.lbl_stats_sortie_voiture.Location = new System.Drawing.Point(9, 119);
+            this.lbl_stats_sortie_voiture.Name = "lbl_stats_sortie_voiture";
+            this.lbl_stats_sortie_voiture.Size = new System.Drawing.Size(99, 26);
+            this.lbl_stats_sortie_voiture.TabIndex = 3;
+            this.lbl_stats_sortie_voiture.Text = "Nombre de voitures\r\n       Aujourd\'hui :";
+            // 
+            // lbl_stats_sortie_nb_voiture
+            // 
+            this.lbl_stats_sortie_nb_voiture.AutoSize = true;
+            this.lbl_stats_sortie_nb_voiture.Location = new System.Drawing.Point(160, 131);
+            this.lbl_stats_sortie_nb_voiture.Name = "lbl_stats_sortie_nb_voiture";
+            this.lbl_stats_sortie_nb_voiture.Size = new System.Drawing.Size(10, 13);
+            this.lbl_stats_sortie_nb_voiture.TabIndex = 4;
+            this.lbl_stats_sortie_nb_voiture.Text = "-";
+            // 
+            // chk_stats_sortie_saturee
+            // 
+            this.chk_stats_sortie_saturee.AutoSize = true;
+            this.chk_stats_sortie_saturee.Location = new System.Drawing.Point(35, 78);
+            this.chk_stats_sortie_saturee.Name = "chk_stats_sortie_saturee";
+            this.chk_stats_sortie_saturee.Size = new System.Drawing.Size(63, 17);
+            this.chk_stats_sortie_saturee.TabIndex = 6;
+            this.chk_stats_sortie_saturee.Text = "Saturée";
+            this.chk_stats_sortie_saturee.UseVisualStyleBackColor = true;
+            this.chk_stats_sortie_saturee.CheckedChanged += new System.EventHandler(this.chk_stats_sortie_saturee_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1969,8 +2054,9 @@
             this.Controls.Add(this.grp_stats);
             this.Controls.Add(this.grp_parking);
             this.Controls.Add(this.grp_etage);
-            this.Controls.Add(this.grp_detail_place);
             this.Controls.Add(this.grp_detail_etage);
+            this.Controls.Add(this.grp_detail_sortie);
+            this.Controls.Add(this.grp_detail_place);
             this.Name = "Form1";
             this.Text = "Gestion de Parking";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -2082,6 +2168,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.grp_etage.ResumeLayout(false);
+            this.grp_detail_sortie.ResumeLayout(false);
+            this.grp_detail_sortie.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2244,6 +2332,13 @@
         private System.Windows.Forms.Button btn_floor2;
         private System.Windows.Forms.Button btn_floor1;
         private System.Windows.Forms.Label lbl_place_value_occupee;
+        private System.Windows.Forms.GroupBox grp_detail_sortie;
+        private System.Windows.Forms.CheckBox chk_stats_sortie_saturee;
+        private System.Windows.Forms.Label lbl_stats_sortie_nb_voiture;
+        private System.Windows.Forms.Label lbl_stats_sortie_voiture;
+        private System.Windows.Forms.RadioButton rdb_sortie_fermee;
+        private System.Windows.Forms.RadioButton rdb_sortie_ouverte;
+        private System.Windows.Forms.Label lbl_sortie_etat;
     }
 }
 

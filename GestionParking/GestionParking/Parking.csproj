@@ -74,6 +74,7 @@
     <Compile Include="Interfaces\IFloorController.cs" />
     <Compile Include="Interfaces\ISlotController.cs" />
     <Compile Include="Models\Items\Exit.cs" />
+    <Compile Include="Models\Items\ExitState.cs" />
     <Compile Include="Models\Items\Floor.cs" />
     <Compile Include="Models\Items\Parking.cs" />
     <Compile Include="Models\Items\Slot.cs" />

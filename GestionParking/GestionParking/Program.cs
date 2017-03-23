@@ -21,11 +21,11 @@ namespace Parking
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
             Form1 view = new Form1();
-            Floor mdlFloor1 = new Floor(1,new List<Slot>());
-            Floor mdlFloor2 = new Floor(2, new List<Slot>());
-            Floor mdlFloor3 = new Floor(3, new List<Slot>());
-            Floor mdlFloor4 = new Floor(4, new List<Slot>());
-            Floor mdlFloor5 = new Floor(5, new List<Slot>());
+            Floor mdlFloor1 = new Floor(1, new List<Slot>(), new List<Exit>());
+            Floor mdlFloor2 = new Floor(2, new List<Slot>(), new List<Exit>());
+            Floor mdlFloor3 = new Floor(3, new List<Slot>(), new List<Exit>());
+            Floor mdlFloor4 = new Floor(4, new List<Slot>(), new List<Exit>());
+            Floor mdlFloor5 = new Floor(5, new List<Slot>(), new List<Exit>());
             IFloorController cntFloor1 = new FloorController(view, mdlFloor1);
             IFloorController cntFloor2 = new FloorController(view, mdlFloor2);
             IFloorController cntFloor3 = new FloorController(view, mdlFloor3);

@@ -21,12 +21,16 @@ namespace Parking
     {
         private int m_ID;
         private List<Slot> m_slotList;
+        private List<Exit> m_exitList;
+        private Int32 m_carCount;
 
 
-        public Floor(int p_iD ,List<Slot> p_sl)
+        public Floor(int p_iD ,List<Slot> p_sl,List<Exit> p_ex)
         {
             this.m_ID = p_iD;
             this.m_slotList = p_sl;
+            this.m_exitList = p_ex;
+            this.m_carCount = 0;
         }
         
 
@@ -42,6 +46,18 @@ namespace Parking
             set { m_slotList = value; }
         }
 
+        public List<Exit> exitList
+        {
+            get { return m_exitList; }
+            set { m_exitList = value; }
+        }
+
+        public Int32 carCount
+        {
+            get { return m_carCount; }
+            set { m_carCount = value; }
+        }
+
         public List<Slot> GetSlotsByState(SlotState s)
         {
             List<Slot> temp= new List<Slot>();
@@ -51,6 +67,11 @@ namespace Parking
                     temp.Add(current);
                 }
                 return temp;
+        }
+
+        public void incvalue()
+        {
+            this.m_carCount += 1;
         }
 
         public void generateFloor1()
@@ -72,6 +93,22 @@ namespace Parking
                     }
                 }
             }
+
+
+            //Sorties
+            Coord tempExitCoord = new Coord(0, (8 * (widthPict + 10) + 60) / 2 - 30 + 25);
+            Exit exit1 = new Exit(0, tempExitCoord);
+            tempExitCoord = new Coord(0, (8 * (widthPict + 10) + 60) / 2 + 30 + 25);
+            Exit exit2 = new Exit(1, tempExitCoord);
+            tempExitCoord = new Coord(11 * (lenghtPict + 10) + 62, (8 * (widthPict + 10) + 60) / 2 + 30 + 25);
+            Exit exit3 = new Exit(2, tempExitCoord);
+            tempExitCoord = new Coord(11 * (lenghtPict + 10) + 62, (8 * (widthPict + 10) + 60) / 2 - 30 + 25);
+            Exit exit4 = new Exit(3, tempExitCoord);
+            m_exitList.Add(exit1);
+            m_exitList.Add(exit2);
+            m_exitList.Add(exit3);
+            m_exitList.Add(exit4);
+
         }
 
         public void generateFloor2()
@@ -93,6 +130,20 @@ namespace Parking
                     }
                 }
             }
+
+            //Sorties
+            Coord tempExitCoord = new Coord(0, (8 * (widthPict + 10) + 60) / 2 - 80 + 35);
+            Exit exit1 = new Exit(0, tempExitCoord);
+            tempExitCoord = new Coord(0, (8 * (widthPict + 10) + 60) / 2 + 80 + 35);
+            Exit exit2 = new Exit(1, tempExitCoord);
+            tempExitCoord = new Coord(11 * (lenghtPict + 10) + 62, (8 * (widthPict + 10) + 60) / 2 + 80 + 35);
+            Exit exit3 = new Exit(2, tempExitCoord);
+            tempExitCoord = new Coord(11 * (lenghtPict + 10) + 62, (8 * (widthPict + 10) + 60) / 2 - 80 + 35);
+            Exit exit4 = new Exit(3, tempExitCoord);
+            m_exitList.Add(exit1);
+            m_exitList.Add(exit2);
+            m_exitList.Add(exit3);
+            m_exitList.Add(exit4);
         }
 
         public void generateFloor3()
@@ -114,6 +165,20 @@ namespace Parking
                     }
                 }
             }
+
+            //Sorties
+            Coord tempExitCoord = new Coord(2 * (lenghtPict + 10) + 50, 0);
+            Exit exit1 = new Exit(0, tempExitCoord);
+            tempExitCoord = new Coord(8 * (lenghtPict + 10) + 50 , 0);
+            Exit exit2 = new Exit(1, tempExitCoord);
+            tempExitCoord = new Coord(2 * (lenghtPict + 10) + 50, 10 * (widthPict + 10) + 80);
+            Exit exit3 = new Exit(2, tempExitCoord);
+            tempExitCoord = new Coord(8 * (lenghtPict + 10) + 50, 10 * (widthPict + 10) + 80);
+            Exit exit4 = new Exit(3, tempExitCoord);
+            m_exitList.Add(exit1);
+            m_exitList.Add(exit2);
+            m_exitList.Add(exit3);
+            m_exitList.Add(exit4);
         }
 
         public int statsDisponible()

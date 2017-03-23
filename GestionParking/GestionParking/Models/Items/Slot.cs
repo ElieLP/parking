@@ -22,7 +22,6 @@ namespace Parking
             this.m_location = new Coord(p_CoordX, p_CoordY);
             this.m_nbCar = 0;
 
-
             
             if(p_lastTimeReserved != null)
             {
@@ -30,7 +29,7 @@ namespace Parking
             }
             else
             {
-                new DateTime(0);
+                this.m_lastTimeReserved = new DateTime(0);
             }
             
             if(p_lastTimeTaken != null)
@@ -147,6 +146,7 @@ namespace Parking
                     if (this.m_state == SlotState.Reserved)
                         //throw new Exception("Allready Reserved");
                     ;
+                    m_lastTimeReserved = DateTime.Now;
                     m_lastTimeTaken = DateTime.Now;
                     break;
                 case SlotState.Used:
@@ -154,6 +154,7 @@ namespace Parking
                         //throw new Exception("Allready Used");
                     ;
                     m_lastTimeTaken = DateTime.Now;
+                    m_lastTimeReserved = DateTime.Now;
                     break;
             }
 
