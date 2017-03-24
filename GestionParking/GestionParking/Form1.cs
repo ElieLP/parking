@@ -862,6 +862,7 @@ namespace Parking
             grp_detail_place.Hide();
             grp_detail_etage.Show();
             grp_detail_etage.Text = "Détails : Etage 1";
+            grp_parking.Text = "Parking - Etage 1";
 
             actualFloor = 1;
 
@@ -877,6 +878,7 @@ namespace Parking
             grp_detail_place.Hide();
             grp_detail_etage.Show();
             grp_detail_etage.Text = "Détails : Etage 2";
+            grp_parking.Text = "Parking - Etage 2";
             actualFloor = 2;
 
             displayFloorStats(floor2);
@@ -890,6 +892,7 @@ namespace Parking
             grp_detail_place.Hide();
             grp_detail_etage.Show();
             grp_detail_etage.Text = "Détails : Etage 3";
+            grp_parking.Text = "Parking - Etage 3";
             actualFloor = 3;
 
             displayFloorStats(floor3);
@@ -903,6 +906,7 @@ namespace Parking
             grp_detail_place.Hide();
             grp_detail_etage.Show();
             grp_detail_etage.Text = "Détails : Etage 4";
+            grp_parking.Text = "Parking - Etage 4";
             actualFloor = 4;
 
             displayFloorStats(floor4);
@@ -916,6 +920,7 @@ namespace Parking
             grp_detail_place.Hide();
             grp_detail_etage.Show();
             grp_detail_etage.Text = "Détails : Etage 5";
+            grp_parking.Text = "Parking - Etage 5";
             actualFloor = 5;
 
             displayFloorStats(floor5);
